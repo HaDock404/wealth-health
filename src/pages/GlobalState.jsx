@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import Test from "./Test"
-//recupérer la valeur et la mettre dans un useste, essayer de faire un usestate avec un tableau et afficher le usestate dans la console
+
 function GlobalState() {
 
     const [name, setName] = useState("")
@@ -13,14 +13,12 @@ function GlobalState() {
             var4: "Pompon",
         }
     )
-    console.log(tab.var1)
-    let updatedValue = {"var1":"Eli"};
+    /*let updatedValue = {"var5":"Eli"};
     setTab(tab => (
         {
             ...tab, ...updatedValue
         }
-    ))
-    console.log(tab.var1)
+    ))*/
 
     const printValues = e => {
         e.preventDefault();

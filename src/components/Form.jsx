@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { HaDock404Plugin } from "hadock404-plugin"
 
-const CardSignInContent = styled.article`
+const CardSignInContent = styled.form`
     box-sizing: border-box;
     background-color: white;
     width: 100%;
@@ -48,10 +48,10 @@ const CardTitle = styled.h1`
     text-align: center;
     `
 
-const CardForm1 = styled.form`
+const CardForm1 = styled.div`
     padding: 20px;`
 
-const CardForm2 = styled.form`
+const CardForm2 = styled.div`
     border: 2px solid black;
     padding: 20px;
     position: relative;
@@ -73,7 +73,7 @@ const CardTest = styled.h3`
     top: -17px;
     `
 
-function Form () {
+function Form (props) {
 
         return (
             <CardSignInContent>
@@ -82,19 +82,35 @@ function Form () {
                     <CardForm1>
                         <CardInputWrapper>
                             <CardLabel htmlFor="First-Name">First Name</CardLabel>
-                            <CardInput type="text" id="First-Name"/>
+                            <CardInput 
+                                type="text" 
+                                id="First-Name"
+                                onChange={event => props.setTab(tab => ({...tab, ...{"firstName":`${event.target.value}`}}))}
+                            />
                         </CardInputWrapper>
                         <CardInputWrapper>
                             <CardLabel htmlFor="Last-Name">Last Name</CardLabel>
-                            <CardInput type="text" id="Last-Name"/>
+                            <CardInput 
+                                type="text" 
+                                id="Last-Name"
+                                onChange={event => props.setTab(tab => ({...tab, ...{"lastName":`${event.target.value}`}}))}
+                            />
                         </CardInputWrapper>
                         <CardInputWrapper>
                             <CardLabel htmlFor="Date-of-Birth">Date of Birth</CardLabel>
-                            <CardInput type="date" id="Date-of-Birth"/>
+                            <CardInput 
+                                type="date" 
+                                id="Date-of-Birth"
+                                onChange={event => props.setTab(tab => ({...tab, ...{"birthDate":`${event.target.value}`}}))}
+                            />
                         </CardInputWrapper>
                         <CardInputWrapper>
                             <CardLabel htmlFor="Start-Date">Start Date</CardLabel>
-                            <CardInput type="date" id="Start-Date"/>
+                            <CardInput 
+                                type="date" 
+                                id="Start-Date"
+                                onChange={event => props.setTab(tab => ({...tab, ...{"startDate":`${event.target.value}`}}))}
+                            />
                         </CardInputWrapper>     
                     </CardForm1>
 
@@ -102,19 +118,35 @@ function Form () {
                         <CardTest>Adress</CardTest>
                         <CardInputWrapper>
                                 <CardLabel htmlFor="First-Name">Street</CardLabel>
-                                <CardInput type="text" id="First-Name"/>
+                                <CardInput 
+                                    type="text" 
+                                    id="First-Name"
+                                    onChange={event => props.setTab(tab => ({...tab, ...{"street":`${event.target.value}`}}))}
+                                />
                             </CardInputWrapper>
                             <CardInputWrapper>
                                 <CardLabel htmlFor="Last-Name">City</CardLabel>
-                                <CardInput type="text" id="Last-Name"/>
+                                <CardInput 
+                                    type="text" 
+                                    id="Last-Name"
+                                    onChange={event => props.setTab(tab => ({...tab, ...{"city":`${event.target.value}`}}))}
+                                />
                             </CardInputWrapper>
                             <CardInputWrapper>
                                 <CardLabel htmlFor="State">State</CardLabel>
-                                <CardInput type="text" id="State"/>
+                                <CardInput 
+                                    type="text" 
+                                    id="State"
+                                    onChange={event => props.setTab(tab => ({...tab, ...{"state":`${event.target.value}`}}))}
+                                />
                             </CardInputWrapper>
                             <CardInputWrapper>
                                 <CardLabel htmlFor="Zip-Code">Zip Code</CardLabel>
-                                <CardInput type="text" id="Zip-Code"/>
+                                <CardInput 
+                                    type="text" 
+                                    id="Zip-Code"
+                                    onChange={event => props.setTab(tab => ({...tab, ...{"zipCode":`${event.target.value}`}}))}
+                                />
                                 <HaDock404Plugin dropdownMessage="test"></HaDock404Plugin>
                             </CardInputWrapper>
                     </CardForm2>

@@ -16,13 +16,10 @@ import './styles/normalize.css'
 //import Form from './components/Form';
 //import Employees from './components/Employees';
 import GlobalRoutes from './pages/GlobalRoutes';
-import GlobalState from './pages/GlobalState';
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GlobalState/>
     <GlobalRoutes/>
   </React.StrictMode>
     
