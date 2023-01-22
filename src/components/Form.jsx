@@ -76,7 +76,7 @@ const CardTest = styled.h3`
 function Form (props) {
 
         return (
-            <CardSignInContent>
+            <CardSignInContent onSubmit={props.submit}>
                 <CardTitle>Create Employee</CardTitle>
                 <CardDisplay>
                     <CardForm1>
@@ -85,6 +85,7 @@ function Form (props) {
                             <CardInput 
                                 type="text" 
                                 id="First-Name"
+                                value={props.tab.firstName}
                                 onChange={event => props.setTab(tab => ({...tab, ...{"firstName":`${event.target.value}`}}))}
                             />
                         </CardInputWrapper>
@@ -93,6 +94,7 @@ function Form (props) {
                             <CardInput 
                                 type="text" 
                                 id="Last-Name"
+                                value={props.tab.lastName}
                                 onChange={event => props.setTab(tab => ({...tab, ...{"lastName":`${event.target.value}`}}))}
                             />
                         </CardInputWrapper>
@@ -101,6 +103,7 @@ function Form (props) {
                             <CardInput 
                                 type="date" 
                                 id="Date-of-Birth"
+                                value={props.tab.birthDate}
                                 onChange={event => props.setTab(tab => ({...tab, ...{"birthDate":`${event.target.value}`}}))}
                             />
                         </CardInputWrapper>
@@ -109,6 +112,7 @@ function Form (props) {
                             <CardInput 
                                 type="date" 
                                 id="Start-Date"
+                                value={props.tab.startDate}
                                 onChange={event => props.setTab(tab => ({...tab, ...{"startDate":`${event.target.value}`}}))}
                             />
                         </CardInputWrapper>     
@@ -121,6 +125,7 @@ function Form (props) {
                                 <CardInput 
                                     type="text" 
                                     id="First-Name"
+                                    value={props.tab.street}
                                     onChange={event => props.setTab(tab => ({...tab, ...{"street":`${event.target.value}`}}))}
                                 />
                             </CardInputWrapper>
@@ -129,6 +134,7 @@ function Form (props) {
                                 <CardInput 
                                     type="text" 
                                     id="Last-Name"
+                                    value={props.tab.city}
                                     onChange={event => props.setTab(tab => ({...tab, ...{"city":`${event.target.value}`}}))}
                                 />
                             </CardInputWrapper>
@@ -137,6 +143,7 @@ function Form (props) {
                                 <CardInput 
                                     type="text" 
                                     id="State"
+                                    value={props.tab.state}
                                     onChange={event => props.setTab(tab => ({...tab, ...{"state":`${event.target.value}`}}))}
                                 />
                             </CardInputWrapper>
@@ -145,9 +152,10 @@ function Form (props) {
                                 <CardInput 
                                     type="text" 
                                     id="Zip-Code"
+                                    value={props.tab.zipCode}
                                     onChange={event => props.setTab(tab => ({...tab, ...{"zipCode":`${event.target.value}`}}))}
                                 />
-                                <HaDock404Plugin dropdownMessage="test"></HaDock404Plugin>
+                                <HaDock404Plugin dropdownMessage="Select"></HaDock404Plugin>
                             </CardInputWrapper>
                     </CardForm2>
                 </CardDisplay>

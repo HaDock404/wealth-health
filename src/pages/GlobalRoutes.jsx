@@ -14,6 +14,9 @@ import Error from './Error';
 import Form from '../components/Form';
 import Employees from '../components/Employees';
 
+let employees = []
+let i = 0;
+
 function GlobalRoutes() {
 
   const [tab, setTab] = useState(
@@ -29,8 +32,36 @@ function GlobalRoutes() {
     }
   )
 
+  class Person {
+    firstName = '';
+    lastName = '';
+    constructor(firstName,lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+  }
+
+  
+
+  function onsubmit(e) {
+    e.preventDefault()
+    const employee= new Person(`${tab.firstName}`,`${tab.lastName}`)
+    employees.push(employee)
+    setTab(tab => (
+      {
+        ...tab, 
+        ...{"firstName":``},
+        ...{"lastName":``}
+      }
+    ))
+
+  }
     return (
     <BrowserRouter>
+        {employees.map(e => <div key={i++}>{e.firstName} {e.lastName}</div>)}
+        <br/>
+        <br/>
+        <br/>
         {tab.firstName}<br/>
         {tab.lastName}<br/>
         {tab.birthDate}<br/>
@@ -45,7 +76,7 @@ function GlobalRoutes() {
             <>
               <Header/>
               <HRnet/>
-              <Form tab={tab} setTab={setTab}/>
+              <Form tab={tab} setTab={setTab} submit={onsubmit}/>
             </>
           }/>
           <Route path="/employee" element={<><Header/><Employees/></>}/>
