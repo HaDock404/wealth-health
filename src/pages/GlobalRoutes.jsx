@@ -28,16 +28,32 @@ function GlobalRoutes() {
       street: "",
       city: "",
       state: "",
-      zipCode: ""
+      zipCode: "",
+      department: ""
     }
   )
 
   class Person {
     firstName = '';
     lastName = '';
-    constructor(firstName,lastName) {
+    birthDate = '';
+    startDate = '';
+    street = '';
+    city = '';
+    state = '';
+    zipCode = '';
+    department = '';
+
+    constructor(firstName,lastName, birthDate, startDate, street, city, state, zipCode, department) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.startDate = startDate;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.department = department;
     }
   }
 
@@ -45,20 +61,27 @@ function GlobalRoutes() {
 
   function onsubmit(e) {
     e.preventDefault()
-    const employee= new Person(`${tab.firstName}`,`${tab.lastName}`)
+    const employee= new Person(`${tab.firstName}`,`${tab.lastName}`, `${tab.birthDate}`, `${tab.startDate}`, `${tab.street}`, `${tab.city}`, `${tab.state}`, `${tab.zipCode}`, `${tab.department}`)
     employees.push(employee)
     setTab(tab => (
       {
         ...tab, 
         ...{"firstName":``},
-        ...{"lastName":``}
+        ...{"lastName":``},
+        ...{"birthDate":``},
+        ...{"startDate":``},
+        ...{"street":``},
+        ...{"city":``},
+        ...{"state":``},
+        ...{"zipCode":``},
+        ...{"department":``}
       }
     ))
 
   }
     return (
     <BrowserRouter>
-        {employees.map(e => <div key={i++}>{e.firstName} {e.lastName}</div>)}
+        {employees.map(e => <div key={i++}>{e.firstName} {e.lastName} {e.birthDate} {e.startDate} {e.street} {e.city} {e.state} {e.zipCode} {e.department}</div>)}
         <br/>
         <br/>
         <br/>
@@ -79,7 +102,7 @@ function GlobalRoutes() {
               <Form tab={tab} setTab={setTab} submit={onsubmit}/>
             </>
           }/>
-          <Route path="/employee" element={<><Header/><Employees/></>}/>
+          <Route path="/employee" element={<><Header/><Employees  tab={employees}/></>}/>
           <Route path="*" element={<><Header/><Error/></>}/>
         </Routes>
     

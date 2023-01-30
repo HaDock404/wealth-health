@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { HaDock404Plugin } from "hadock404-plugin"
+import { states, departments } from '../plugins/Data.js'
 
 const CardSignInContent = styled.form`
     box-sizing: border-box;
@@ -75,6 +76,14 @@ const CardTest = styled.h3`
 
 function Form (props) {
 
+    function state(e) {
+        props.setTab(tab => ({...tab, ...{"state":`${e.getAttribute('data')}`}}))
+    }
+
+    function test(e) {
+        props.setTab(tab => ({...tab, ...{"department":`${e.getAttribute('data')}`}}))
+    }
+
         return (
             <CardSignInContent onSubmit={props.submit}>
                 <CardTitle>Create Employee</CardTitle>
@@ -147,6 +156,7 @@ function Form (props) {
                                     onChange={event => props.setTab(tab => ({...tab, ...{"state":`${event.target.value}`}}))}
                                 />
                             </CardInputWrapper>
+                            <HaDock404Plugin dropdownMessage="Select" onDataReceived={state} tabWordsList={states}></HaDock404Plugin>
                             <CardInputWrapper>
                                 <CardLabel htmlFor="Zip-Code">Zip Code</CardLabel>
                                 <CardInput 
@@ -155,7 +165,7 @@ function Form (props) {
                                     value={props.tab.zipCode}
                                     onChange={event => props.setTab(tab => ({...tab, ...{"zipCode":`${event.target.value}`}}))}
                                 />
-                                <HaDock404Plugin dropdownMessage="Select"></HaDock404Plugin>
+                                <HaDock404Plugin dropdownMessage="Select" onDataReceived={test} tabWordsList={departments}></HaDock404Plugin>
                             </CardInputWrapper>
                     </CardForm2>
                 </CardDisplay>
