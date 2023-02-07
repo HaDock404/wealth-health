@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import "../styles/style.css"
 
@@ -8,6 +9,58 @@ const CardDiv = styled.div`
     align-items: center;
     justify-content: center;
 `
+
+/*const tableau = [
+    {
+        firstName: "jean",
+        lastName: "valjean",
+        birthDate: "2023-01-21",
+        startDate: "2023-01-22",
+        street: "12 rue des champs",
+        city: "paris",
+        state: "yveline",
+        zipCode: "49300",
+        department: "sales"
+    },
+    {
+        firstName: "margot",
+        lastName: "vaxjean",
+        birthDate: "2023-01-21",
+        startDate: "2023-01-22",
+        street: "12 rue des champs",
+        city: "paris",
+        state: "yveline",
+        zipCode: "49300",
+        department: "sales"
+    },
+    {
+        firstName: "jacques",
+        lastName: "valjean",
+        birthDate: "2023-01-21",
+        startDate: "2023-01-22",
+        street: "12 rue des champs",
+        city: "paris",
+        state: "yveline",
+        zipCode: "49300",
+        department: "sales"
+    },
+]*/
+
+let tableau2 = []
+
+function User (firstName,lastName, birthDate, startDate, street, city, state, zipCode, department) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.startDate = startDate;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.department = department;
+}
+
+
 
 function Employees(props) {
     let i = 0
@@ -53,8 +106,30 @@ function Employees(props) {
         }
     }
 
+    function SearchAlgo(e) {
+
+        for (let i = 0; i < props.tab.length; i++) {
+            if(e === props.tab[i].firstName  || e === props.tab[i].lastName || e === props.tab[i].birthDate || e === props.tab[i].startDate || e === props.tab[i].street || e === props.tab[i].city || e === props.tab[i].state || e === props.tab[i].zipCode || e === props.tab[i].department) {
+                var user1 = new User(props.tab[i].firstName, props.tab[i].lastName, props.tab[i].birthDate, props.tab[i].startDate, props.tab[i].street, props.tab[i].city, props.tab[i].state, props.tab[i].zipCode, props.tab[i].department,);
+                tableau2.push(user1)
+                setTab(tableau2)
+            }
+        }
+        if (e === "") {
+            tableau2 = []
+            setTab(props.tab)            
+        }
+    }
+
+    const [tab, setTab] = useState(props.tab)
+
     return (
         <CardDiv id="employee-div" className="container">
+
+            <div>
+                <label htmlFor="">Search: </label>
+                <input onChange={(e)=>SearchAlgo(e.target.value)} type="text"/>
+            </div>
             <h1>Current Employees</h1>
             <table id="employee-table" className="display dataTable no-footer" role="grid">
                 <thead>
@@ -89,7 +164,7 @@ function Employees(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.tab.map(
+                    {tab.map(
                         e =>
                             <tr key={i++}>
                                 <td>{e.firstName}</td>
