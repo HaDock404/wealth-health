@@ -4871,10 +4871,10 @@
   dependencies:
     "duplexer" "^0.1.2"
 
-"hadock404-plugin@^0.1.7":
-  "integrity" "sha512-LVOUW2jXbj4yDUHtt4STRGXegTnXyyD5sRAZCXVww74qVbbti5isfQ1Q7RiH0rHRR84hnS9wFGk8w8AYI8NQjg=="
-  "resolved" "https://registry.npmjs.org/hadock404-plugin/-/hadock404-plugin-0.1.7.tgz"
-  "version" "0.1.7"
+"hadock404-plugin@^0.1.9":
+  "integrity" "sha512-J9yNGqVseVaIn1Iz2HlPlmebomb9mcDJbDMbAkU8pgS9CTqXjMAIecKSfZ706bPPFsQpsuSrx26phmTpFFQ4zQ=="
+  "resolved" "https://registry.npmjs.org/hadock404-plugin/-/hadock404-plugin-0.1.9.tgz"
+  "version" "0.1.9"
   dependencies:
     "react-router-dom" "^6.6.2"
 

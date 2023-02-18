@@ -14,6 +14,7 @@ import Error from './Error';
 import Form from '../components/Form';
 import Employees from '../components/Employees';
 
+
 let employees = []
 let i = 0;
 
@@ -55,9 +56,7 @@ function GlobalRoutes() {
         this.zipCode = zipCode;
         this.department = department;
     }
-  }
-
-  
+  }  
 
   function onsubmit(e) {
     e.preventDefault()
