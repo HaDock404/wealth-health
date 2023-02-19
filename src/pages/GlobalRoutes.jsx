@@ -16,7 +16,6 @@ import Employees from '../components/Employees';
 
 
 let employees = []
-let i = 0;
 
 function GlobalRoutes() {
 
@@ -80,18 +79,7 @@ function GlobalRoutes() {
   }
     return (
     <BrowserRouter>
-        {employees.map(e => <div key={i++}>{e.firstName} {e.lastName} {e.birthDate} {e.startDate} {e.street} {e.city} {e.state} {e.zipCode} {e.department}</div>)}
-        <br/>
-        <br/>
-        <br/>
-        {tab.firstName}<br/>
-        {tab.lastName}<br/>
-        {tab.birthDate}<br/>
-        {tab.startDate}<br/>
-        {tab.street}<br/>
-        {tab.city}<br/>
-        {tab.state}<br/>
-        {tab.zipCode}<br/>
+
         <GlobalStyle/>
         <Routes>
           <Route path="/" element={

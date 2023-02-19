@@ -90,7 +90,7 @@ function Form (props) {
         props.setTab(tab => ({...tab, ...{"state":`${e.getAttribute('data')}`}}))
     }
 
-    function test(e) {
+    function department(e) {
         props.setTab(tab => ({...tab, ...{"department":`${e.getAttribute('data')}`}}))
     }
 
@@ -158,16 +158,13 @@ function Form (props) {
                                     onChange={event => props.setTab(tab => ({...tab, ...{"city":`${event.target.value}`}}))}
                                 />
                             </CardInputWrapper>
-                            <CardInputWrapper>
-                                <CardLabel htmlFor="State">State</CardLabel>
-                                <CardInput 
-                                    type="text" 
-                                    id="State"
-                                    value={props.tab.state}
-                                    onChange={event => props.setTab(tab => ({...tab, ...{"state":`${event.target.value}`}}))}
-                                />
-                            </CardInputWrapper>
-                            <HaDock404Plugin dropdownMessage="Select" onDataReceived={state} tabWordsList={states} value={value1} onChange={setValue1}></HaDock404Plugin>
+                            <HaDock404Plugin 
+                                dropdownMessage="Select" 
+                                onDataReceived={state} 
+                                tabWordsList={states} 
+                                value={value1} 
+                                onChange={setValue1}>
+                            </HaDock404Plugin>
                             <CardInputWrapper>
                                 <CardLabel htmlFor="Zip-Code">Zip Code</CardLabel>
                                 <CardInput 
@@ -176,7 +173,13 @@ function Form (props) {
                                     value={props.tab.zipCode}
                                     onChange={event => props.setTab(tab => ({...tab, ...{"zipCode":`${event.target.value}`}}))}
                                 />
-                                <HaDock404Plugin dropdownMessage={"Select"} onDataReceived={test} tabWordsList={departments} value={value2} onChange={setValue2}></HaDock404Plugin>
+                                <HaDock404Plugin 
+                                    dropdownMessage={"Select"} 
+                                    onDataReceived={department} 
+                                    tabWordsList={departments} 
+                                    value={value2} 
+                                    onChange={setValue2}>
+                                </HaDock404Plugin>
                             </CardInputWrapper>
                     </CardForm2>
                 </CardDisplay>
