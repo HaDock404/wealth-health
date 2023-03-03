@@ -59,7 +59,7 @@ function GlobalRoutes() {
 
   function onsubmit(e) {
     e.preventDefault()
-    const employee= new Person(`${tab.firstName}`,`${tab.lastName}`, `${tab.birthDate}`, `${tab.startDate}`, `${tab.street}`, `${tab.city}`, `${tab.state}`, `${tab.zipCode}`, `${tab.department}`)
+    const employee= new Person(`${tab.firstName}`,`${tab.lastName}`, tab.birthDate, tab.startDate, `${tab.street}`, `${tab.city}`, `${tab.state}`, `${tab.zipCode}`, `${tab.department}`)
     employees.push(employee)
     setTab(tab => (
       {

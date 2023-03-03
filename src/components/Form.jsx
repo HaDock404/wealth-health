@@ -1,7 +1,10 @@
 import styled from "styled-components"
-import { HaDock404Plugin } from "hadock404-plugin"
 import { states, departments } from '../plugins/Data.js'
-import { useState } from "react"
+import  React,{ useState } from "react"
+
+import { HaDock404Plugin } from "hadock404-plugin"
+import DatePicker from 'react-date-picker'
+import Modal from 'react-modal';
 
 const CardSignInContent = styled.form`
     box-sizing: border-box;
@@ -75,7 +78,28 @@ const CardTest = styled.h3`
     top: -17px;
     `
 
+const customStyles = {
+    content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+    },
+};
+
 function Form (props) {
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     const [value1, setValue1] = useState(null)
     const [value2, setValue2] = useState(null)
@@ -83,7 +107,7 @@ function Form (props) {
     function reset() {
         setValue1(null);
         setValue2(null);
-        alert("Employee created")
+        openModal()
     }
 
     function state(e) {
@@ -93,7 +117,6 @@ function Form (props) {
     function department(e) {
         props.setTab(tab => ({...tab, ...{"department":`${e.getAttribute('data')}`}}))
     }
-
 
         return (
             <CardSignInContent onSubmit={props.submit}>
@@ -118,22 +141,23 @@ function Form (props) {
                                 onChange={event => props.setTab(tab => ({...tab, ...{"lastName":`${event.target.value}`}}))}
                             />
                         </CardInputWrapper>
+
                         <CardInputWrapper>
                             <CardLabel htmlFor="Date-of-Birth">Date of Birth</CardLabel>
-                            <CardInput 
-                                type="date" 
-                                id="Date-of-Birth"
+                            <DatePicker 
+                                onChange={(newDate) => {
+                                    props.setTab(tab => ({...tab, ...{"birthDate": newDate}}))}}
                                 value={props.tab.birthDate}
-                                onChange={event => props.setTab(tab => ({...tab, ...{"birthDate":`${event.target.value}`}}))}
                             />
                         </CardInputWrapper>
+                        
                         <CardInputWrapper>
                             <CardLabel htmlFor="Start-Date">Start Date</CardLabel>
-                            <CardInput 
-                                type="date" 
-                                id="Start-Date"
+
+                            <DatePicker 
+                                onChange={(newDate) => {
+                                    props.setTab(tab => ({...tab, ...{"startDate": newDate}}))}}
                                 value={props.tab.startDate}
-                                onChange={event => props.setTab(tab => ({...tab, ...{"startDate":`${event.target.value}`}}))}
                             />
                         </CardInputWrapper>     
                     </CardForm1>
@@ -159,7 +183,8 @@ function Form (props) {
                                 />
                             </CardInputWrapper>
                             <HaDock404Plugin 
-                                dropdownMessage="Select" 
+                                dropdownMessage="Select"
+                                dropdownWidth="200px"
                                 onDataReceived={state} 
                                 tabWordsList={states} 
                                 value={value1} 
@@ -174,7 +199,9 @@ function Form (props) {
                                     onChange={event => props.setTab(tab => ({...tab, ...{"zipCode":`${event.target.value}`}}))}
                                 />
                                 <HaDock404Plugin 
-                                    dropdownMessage={"Select"} 
+                                    dropdownMessage={"Select"}
+                                    dropdownColor="red"
+                                    dropdownBackgroundColor="yellow"
                                     onDataReceived={department} 
                                     tabWordsList={departments} 
                                     value={value2} 
@@ -184,6 +211,16 @@ function Form (props) {
                     </CardForm2>
                 </CardDisplay>
                 <CardButton onClick={reset} type="submit">Save</CardButton>
+                <Modal
+                    ariaHideApp={false}
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <h2>Employee Created</h2>
+                    <button onClick={closeModal}>close</button>
+                </Modal>
                 
             </CardSignInContent>
         )

@@ -1,6 +1,7 @@
-import { useState } from "react";
 import styled from "styled-components";
 import "../styles/style.css"
+
+import DpDataTable from 'dp-data-table';
 
 const CardDiv = styled.div`
     width: 100%;
@@ -46,7 +47,7 @@ const CardDiv = styled.div`
     },
 ]*/
 
-let tableau2 = []
+/*let tableau2 = []*/
 
 function User (firstName,lastName, birthDate, startDate, street, city, state, zipCode, department) {
         this.firstName = firstName;
@@ -61,7 +62,7 @@ function User (firstName,lastName, birthDate, startDate, street, city, state, zi
 }
 
 
-
+/*
 function Employees(props) {
     let i = 0
 
@@ -180,6 +181,79 @@ function Employees(props) {
                     )}
                 </tbody>
             </table>
+            <DpDataTable items={
+                tab.map(e => [{
+                            FirstName: e.firstName, 
+                            Lastname: e.lastName, 
+                            Birthdate: e.birthDate,
+                            Startdate: e.startDate,
+                            Street: e.street,
+                            City: e.city,
+                            State: e.state,
+                            Zipcode: e.zipCode,
+                            Department: e.department
+                        }])
+            } />
+        </CardDiv>
+    )
+}*/
+
+function Employees(props) {
+
+    //const [tab, setTab] = useState(props.tab)
+
+    /*const tab = [
+        {
+            firstName: "marie", 
+            lastName: "dupont", 
+            birthDate: "26/03/2024",
+            startDate: "26/04/2003",
+            street: "53 avenue de nantes",
+            city: "cholet",
+            state: "lalal",
+            zipCode:"lalala",
+            department: "lalala"
+        },
+        {
+            firstName: "louise", 
+            lastName: "dupont", 
+            birthDate: "26/03/2024",
+            startDate: "26/04/2003",
+            street: "53 avenue de nantes",
+            city: "cholet",
+            state: "lalal",
+            zipCode:"lalala",
+            department: "lalala"
+        },
+    ]*/
+
+    
+    const dataTab = []
+
+    props.tab.forEach(e => {
+        if (e.birthDate !== '' && e.startDate !== '') {
+            const birthdate = e.birthDate.getFullYear() + '/' + (e.birthDate.getMonth() + 1) + '/' + e.birthDate.getDate()
+            const startdate = e.startDate.getFullYear() + '/' + (e.startDate.getMonth() + 1) + '/' + e.startDate.getDate()
+            const newUser = new User(e.firstName, e.lastName, birthdate, startdate, e.street, e.city, e.state, e.zipCode, e.department)
+            dataTab.push(newUser)
+        } else {
+            const newUser = new User(e.firstName, e.lastName, e.birthDate, e.startDate, e.street, e.city, e.state, e.zipCode, e.department)
+            dataTab.push(newUser)
+        }
+        
+        
+        }
+    )
+    //console.log(dataTab)
+
+    return (
+        <CardDiv id="employee-div" className="container">
+            <DpDataTable 
+                items={dataTab} 
+                showFilter
+                showSort
+                headers= {{'firstName': 'First Name', 'lastName': 'Last name', 'birthDate': 'Birthdate', 'startDate': 'Start date', 'street': 'Street', 'city': 'City', 'state': 'State', 'zipCode': 'Zipcode', 'department': 'Department'}}
+            />
         </CardDiv>
     )
 }
